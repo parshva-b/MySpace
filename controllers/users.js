@@ -1,6 +1,7 @@
 const mySpaceRouter = require('express').Router()
 const User = require('../models/user')
-const feedparser = require('ortoo-feedparser')
+const Parser = require('rss-parser')
+const parser = new Parser()
 
 let token = {}
 
@@ -15,22 +16,65 @@ mySpaceRouter.get('/', ( req, res, next) => {
 	}
 })
 
-mySpaceRouter.get('/news', (req, res, next) => {
-	const url = 'https://news.google.com/rss?hl=en-US&gl=US&ceid=US%3Aen&x=1571747254.2933'
-
-	feedparser.parseUrl(url).on('article', function( article ) {
-		console.log('title:', article.title)
-		// res.json(article)
-	})
+mySpaceRouter.get('/news',async (req, res, next) => {
+	if( Object.entries(token).length === 0 && token.constructor === Object ) {
+		res.status(401).json({
+			error: 'Bad request, User must be authenticated'
+		})
+	}
+	else {
+		const rss = token.news
+		let result = []
+		for( const x of rss ) {
+			console.log(x)
+			await parser.parseURL(x, (error, feed) => {
+				for( let i = 1; i <= 10; i++ ) {
+					const item = feed.items[i]
+					console.log(item.title)
+					const content = {
+						title: item.title,
+						url: item.link
+					}
+					result = [ ...result, content ]
+				}
+			})
+		}
+		res.json(result)
+		console.log('-----------------------------')
+	}
 })
 
 mySpaceRouter.get('/user', (req, res, next) => {
-	console.log(token)
+	// console.log(token)
 	User.findOne({ username: token.username })
 		.then( users => {
 			res.json(users)
 		})
 		.catch( error => next(error) )
+})
+
+mySpaceRouter.put('/user/news', (req, res, next) => {
+	if( Object.entries(token).length === 0 && token.constructor === Object ) {
+		res.status(401).json({
+			error: 'Bad request, User must be authenticated'
+		})
+	}
+	else {
+		const user = token
+		const body = req.body
+		if( !user.news.includes( body.news ) ) {
+			user.news = [ ...user.news, body.news]
+			User.findByIdAndUpdate( token._id, user, { new: true })
+			.then( updatedUser => {
+				res.json(updatedUser.toJSON())
+			})
+			.catch(error => next(error))
+		}
+		// console.log(user)
+		else {
+			res.status(204)
+		}
+	}
 })
 
 mySpaceRouter.post('/login', (req, res, next) => {
