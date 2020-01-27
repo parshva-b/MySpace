@@ -10,6 +10,11 @@ const errorHandler = ( error, request, response, next ) => {
 			error: 'Malformatted id: Resend request'
 		})
 	}
+	if( error.name === 'TypeError') {
+		return response.status(400).send({
+			error: 'No such user found'
+		})
+	}
 
 	next(error)
 }

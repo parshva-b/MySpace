@@ -1,10 +1,18 @@
 const mySpaceRouter = require('express').Router()
 const User = require('../models/user')
-
 const feedparser = require('ortoo-feedparser')
 
+let token = {}
+
 mySpaceRouter.get('/', ( req, res, next) => {
-	res.render('index')
+	if(Object.entries(token).length === 0 && token.constructor === Object) {
+		res.json({
+			message: 'Login kara'
+		})
+	}
+	else {
+		res.render('index')
+	}
 })
 
 mySpaceRouter.get('/news', (req, res, next) => {
@@ -17,16 +25,31 @@ mySpaceRouter.get('/news', (req, res, next) => {
 })
 
 mySpaceRouter.get('/user', (req, res, next) => {
-	User.find({})
+	console.log(token)
+	User.findOne({ username: token.username })
 		.then( users => {
 			res.json(users)
 		})
 		.catch( error => next(error) )
 })
 
-mySpaceRouter.post('/login', (req, res) => {
+mySpaceRouter.post('/login', (req, res, next) => {
 	const body = req.body
-	console.log(`Body: ${body}`)
+	User.findOne({ username: body.username })
+		.then( user => {
+			// if login successful
+			if( user.password === body.password ) {
+				token = user
+				res.redirect('/')
+			}
+			else {
+				// if login fails
+				res.json({
+					error: 'Invalid credentials'
+				})
+			}
+		})
+		.catch(error => next(error))
 })
 
 // const people = [
