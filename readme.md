@@ -17,3 +17,18 @@ yarn add [package] (-D {Dev Dependency})
 ```
 
 For Ejs syntax use index.js as template
+
+Issues:
+
+* Getting data from multiple rss feeds does not work as of yet
+
+Work (TO DO):
+
+1. Frontend
+    * Login
+    * Registration
+
+2. Backend
+    * Accomodate Mashup
+    * Resolve Issues
+    * Use AJAX for pagination
