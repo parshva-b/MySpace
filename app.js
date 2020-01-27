@@ -18,6 +18,7 @@ mongoose.connect( config.PORT, { useNewUrlParser: true })
         console.log(`Error connecting to MongoDB: ${error.message}`)
     })
 
+app.set('view engine', 'ejs')
 app.use(cors())
 app.use(bodyParser.json())
 morgan.token('body', function(res, req) { return JSON.stringify( req.body ) })

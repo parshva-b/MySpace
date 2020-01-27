@@ -24,6 +24,11 @@ mySpaceRouter.get('/user', (req, res, next) => {
 		.catch( error => next(error) )
 })
 
+mySpaceRouter.post('/login', (req, res) => {
+	const body = req.body
+	console.log(`Body: ${body}`)
+})
+
 // const people = [
 // 	{
 // 		id: 1,
