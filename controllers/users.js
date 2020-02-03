@@ -1,9 +1,10 @@
+const config = require('../utils/config')
 const mySpaceRouter = require('express').Router()
 const User = require('../models/user')
 const Parser = require('rss-parser')
 const parser = new Parser()
 
-let token = {}
+let token = config.token || {}  
 
 mySpaceRouter.get('/', ( req, res, next) => {
 	if(Object.entries(token).length === 0 && token.constructor === Object) {
