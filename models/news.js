@@ -12,20 +12,12 @@ mongoose.connect( config.MONGODB, { useNewUrlParser: true, useUnifiedTopology: t
         console.log(`Error connecting to MongoDB: ${error.message}`)
     })
 
-const userSchema = new mongoose.Schema({
-    username: String,
-    password: String,
-    news: {
-        type: [String],
-        default: []
-    },
-    sports: {
-        type: [String],
-        default: [] 
-    }
+const newsSchema = new mongoose.Schema({
+    name: String,
+    link: String
 })
 
-userSchema.set('toJSON', {
+newsSchema.set('toJSON', {
     transform: (document, returnedObject) => {
         returnedObject.id = returnedObject._id.toString()
         delete document._id
@@ -33,4 +25,4 @@ userSchema.set('toJSON', {
     }
 })
 
-module.exports = mongoose.model('User', userSchema)
+module.exports = mongoose.model('News', newsSchema)

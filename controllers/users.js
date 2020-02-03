@@ -1,5 +1,6 @@
 const mySpaceRouter = require('express').Router()
 const User = require('../models/user')
+const News = require('../models/news') 
 const Parser = require('rss-parser')
 const parser = new Parser()
 
@@ -16,6 +17,13 @@ mySpaceRouter.get('/', ( req, res, next) => {
 	}
 })
 
+mySpaceRouter.get('/all', async (req, res, next) => {
+	let result = []
+	const news = await News.find({})
+	result = [ ...result, ...news ]
+	res.json(result)
+})
+
 mySpaceRouter.get('/news',async (req, res, next) => {
 	if( Object.entries(token).length === 0 && token.constructor === Object ) {
 		res.status(401).json({
@@ -24,28 +32,31 @@ mySpaceRouter.get('/news',async (req, res, next) => {
 	}
 	else {
 		const rss = token.news
+		// const rss = ['https://reddit.com/r/worldnews/.rss', 'https://news.google.com/rss?hl=en-US&gl=US&ceid=US%3Aen&x=1571747254.2933']
 		let result = []
-		for( const x of rss ) {
-			console.log(x)
-			await parser.parseURL(x, (error, feed) => {
-				for( let i = 1; i <= 10; i++ ) {
-					const item = feed.items[i]
-					console.log(item.title)
-					const content = {
-						title: item.title,
-						url: item.link
-					}
-					result = [ ...result, content ]
+		for(let i = 0; i < rss.length; i++) {
+			let urls = []
+			const feed = await parser.parseURL(rss[i])
+			for(let i = 0; i < 10; i++) {
+				urls = [...urls, feed.items[i]]
+			}
+			console.log('urls', urls.length)
+			urls.map( item => {
+				const content = {
+					title: item.title,
+					link: item.link
 				}
+				result = [ ...result, content]
 			})
 		}
+		console.log('result', result.length)
 		res.json(result)
 		console.log('-----------------------------')
 	}
 })
 
 mySpaceRouter.get('/user', (req, res, next) => {
-	// console.log(token)
+	console.log(token)
 	User.findOne({ username: token.username })
 		.then( users => {
 			res.json(users)
@@ -94,6 +105,25 @@ mySpaceRouter.post('/login', (req, res, next) => {
 			}
 		})
 		.catch(error => next(error))
+})
+
+mySpaceRouter.post('/register', (req, res, next) => {
+	const body = req.body
+	if( body === undefined ) {
+		return res.status(400).json({
+			error: 'Bad request'
+		})
+	}
+
+	const user = new User({
+		username: body.username,
+		password: body.password
+	})
+
+	user.save()
+		.then(savedUser => {
+			res.json(savedUser.toJSON())
+		})
 })
 
 // const people = [

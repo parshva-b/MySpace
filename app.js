@@ -6,17 +6,6 @@ const app = express()
 const cors = require('cors')
 const mySpaceRouter = require('./controllers/users')
 const middleware = require('./utils/middleware')
-const mongoose = require('mongoose')
-
-console.log('Connecting to MongoDB')
-
-mongoose.connect( config.PORT, { useNewUrlParser: true })
-    .then( () => {
-        console.log('Connected to MongoDB')
-    })
-    .catch( error => {
-        console.log(`Error connecting to MongoDB: ${error.message}`)
-    })
 
 app.set('view engine', 'ejs')
 app.use(cors())

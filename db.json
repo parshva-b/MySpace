@@ -1,8 +1,19 @@
 {
-    "news": [
-        
-    ],
-    "sports": [
-        
-    ]
+	"news": [
+		{
+			"name": "BBC News",
+			"link": "http://feeds.bbci.co.uk/news/world/rss.xml"
+		},
+		{
+			"name": "Google News",
+			"link": "https://news.google.com/rss?hl=en-US&gl=US&ceid=US%3Aen&x=1571747254.2933"
+		},
+		{
+			"name": "Reddit r/worldNews",
+			"link": "https://reddit.com/r/worldnews/.rss"
+		}
+	],
+	"sports": [
+		
+	]
 }
