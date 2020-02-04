@@ -24,6 +24,7 @@
     "express": "^4.17.1",
     "mongoose": "^5.8.10",
     "mongoose-global": "^1.0.1",
+    "request": "^2.88.0",
     "rss-parser": "^3.7.4",
     "yarn": "^1.21.1"
   }

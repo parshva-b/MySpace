@@ -11,18 +11,27 @@
 
     .card{
         margin-left: 20%;
+        box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.5);
+        width: 50%;
+        background-color: #F4DECB;
     }
+    .card-body{
+
+    }
+
 </style>
 
 <div class="wrapper">
     <div class="main">
         <% matches.forEach( function(m) { %>
+            <!-- <div class="container"> -->
             <div class="card">
                 <div class="card-body">
                     <strong> <%= m.team1 %> </strong> VS <strong> <%= m.team2 %> </strong>
-                    <h3> <%= m.winner %> </h3>
+                    <h3> <%= m.winner %> <hr style="border-color : transparent"></h3>
                 </div>
-            </div>
+                </div>
+            <!-- </div> -->
         <% }) %>
     </div>
 </div>
