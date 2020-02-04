@@ -9,24 +9,39 @@
         padding: 0px 10px;
     }
 
-    .card{
+    .card {
         margin-left: 20%;
+    }
+
+    .table-news {
+        border: black;
+        border-width: thick;
+
+    }
+
+    .table-data {
+        font-family: 'Segoe UI';
     }
 </style>
 
-<div class="wrapper">
-    <div class="main">
-        <table>
+<div class="main">
+    <table class="table-news">
+        <thead>
             <tr>
                 <th>Title</th>
-                <th>URL</th>
+                <th>See full article:</th>
             </tr>
+        </thead>
+        <tbody>
             <% articles.forEach( function(a) { %>
-                <tr>
-                    <td> <%= a.title %> </td>
-                    <td> <%= a.link %> </td>
-                </tr>
+            <tr>
+                <td class="table-data">
+                    <hr style="border-color : transparent"><%= a.title %> </td>
+                <td class="table-data">
+                    <hr style="border-color : transparent"><a href="<%= a.link %>"><%= a.link %></a> </td>
+            </tr>
             <% }) %>
-        </table>
-    </div>
+        </tbody>
+    </table>
 </div>
+<div class="push"></div>
