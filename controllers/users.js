@@ -8,31 +8,22 @@ const News = require('../models/news')
 const Parser = require('rss-parser')
 const parser = new Parser()
 
-let token = config.token || {}  
+let token = config.token || {}
+console.log('token:', token)
 
 const jsonParser = bodyParser.json()
 
-mySpaceRouter.get('/', async (req, res, next) => {
+mySpaceRouter.get('/', (req, res, next) => {
 	if(Object.entries(token).length === 0 && token.constructor === Object) {
 		res.render('login')
 	}
 	else {
-		// console.log(token)
-		let answer = []
-		const news = await News.find({})
-		answer = news.filter(n => !token.news.includes(n.link) )
-		// console.log(answer)
-		res.render('index', {news: answer})
+		res.render('index')
 	}
 })
 
 mySpaceRouter.get('/register', (req, res, next) => {
-	if(Object.entries(token).length === 0 && token.constructor === Object) {
-		res.render('register')
-	}
-	else {
-		res.render('login')
-	}
+	res.render('register')
 })
 
 mySpaceRouter.get('/all', async (req, res, next) => {
@@ -96,6 +87,20 @@ mySpaceRouter.get('/user', (req, res, next) => {
 		.catch( error => next(error) )
 })
 
+mySpaceRouter.get('/profile', async (req, res, next) => {
+	if( Object.entries(token).length === 0 && token.constructor === Object ) {
+		res.status(401).json({
+			error: 'Bad request, User must be authenticated'
+		})
+	}
+	else {
+		let answer = []
+		const news = await News.find({})
+		answer = news.filter(n => !token.news.includes(n.link) )
+		res.render('profile', { news: answer })
+	}
+})
+
 mySpaceRouter.put('/user/news', (req, res, next) => {
 	if( Object.entries(token).length === 0 && token.constructor === Object ) {
 		res.status(401).json({
@@ -140,8 +145,9 @@ mySpaceRouter.post('/login', jsonParser, (req, res, next) => {
 		.catch(error => next(error))
 })
 
-mySpaceRouter.post('/register', (req, res, next) => {
+mySpaceRouter.post('/register', async (req, res, next) => {
 	const body = req.body
+	console.log(body)
 	if( body === undefined ) {
 		return res.status(400).json({
 			error: 'Bad request'
@@ -152,11 +158,15 @@ mySpaceRouter.post('/register', (req, res, next) => {
 		username: body.username,
 		password: body.password
 	})
+	token = user
 
-	user.save()
-		.then(savedUser => {
-			res.json(savedUser.toJSON())
-		})
+	await user.save()
+	res.redirect('/')
+})
+
+mySpaceRouter.post('/logout', (req, res, next) => {
+	token = {}
+	res.redirect('/')
 })
 
 // const people = [
