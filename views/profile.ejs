@@ -19,6 +19,13 @@
         <div class="card">
             <form class="form-profile" action="" method="GET">
                 News
+                <ul>
+                    <% news.forEach( function(n) { %>
+                        <li>
+                            <%= n.name %>
+                        </li>
+                    <% }) %>
+                </ul>
                 <hr>
                 Sports
                 <hr>
