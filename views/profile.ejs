@@ -1,92 +1,108 @@
-<%- include ('partials/sidenav') %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+</head>
+<body>
+	<%- include ('partials/sidenav') %>
 
-<style>
+	<style>
 
-    .main {
-        margin-left: 20%;
-        /* Same as the width of the sidenav */
-        font-size: 15px;
-        /* Increased text to enable scrolling */
-        padding: 50px;
-    }
+		.main {
+			margin-left: 20%;
+			/* Same as the width of the sidenav */
+			font-size: 15px;
+			/* Increased text to enable scrolling */
+			padding: 50px;
+		}
 
-    .card{
-        /* margin-left: 20%; */
-        border: 0;
-        border-radius: 1rem;
-        box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.5);
-        margin: auto;
-        padding: 30px;
-        width: 50%;
-        background-color: #F4DECB;
-    }
-    .btn-save{
-        background-color: #49274A;
-        border:blueviolet;
-        border-radius: 1rem;
-        font-size: 20px;
-        
-    }
-    .checkbox{
-        size: 25px;
-        font-size: 16.5px;
-        color: #49274A;
-    }
+		.card{
+			/* margin-left: 20%; */
+			border: 0;
+			border-radius: 1rem;
+			box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.5);
+			margin: auto;
+			padding: 30px;
+			width: 50%;
+			background-color: #F4DECB;
+		}
+		.btn-save{
+			background-color: #49274A;
+			border:blueviolet;
+			border-radius: 1rem;
+			font-size: 20px;
+			
+		}
+		.checkbox{
+			size: 25px;
+			font-size: 16.5px;
+			color: #49274A;
+		}
 
-</style>
+	</style>
 
 
-<div class="wrapper">
-    <div class="main">
-        <div class="card">
-            <h2 style="color: #49274A;"><span class="glyphicon glyphicon-user"></span>  Profile</span></h2>
-            <form class="form-profile" action="" method="GET">
-                <h3 style="color: #49274A;">News</h3>
-                <div class="checkbox">
-                    <label><input type="checkbox" value="economy">Business & Economy</label>
-                  </div>
-                  <div class="checkbox">
-                    <label><input type="checkbox" value="">Health & Fitness</label>
-                  </div>
-                  <div class="checkbox">
-                    <label><input type="checkbox" value="">World News</label>
-                  </div>
-                  <div class="checkbox">
-                    <label><input type="checkbox" value="">India News</label>
-                  </div>
-                  <div class="checkbox">
-                    <label><input type="checkbox" value="">Celebrity News</label>
-                  </div>
-                <hr style="border-color : transparent">
-                <h3 style="color: #49274A;">Sports</h3>
-                <div class="checkbox">
-                    <label><input type="checkbox" value="economy">Cricket</label>
-                  </div>
-                  <div class="checkbox">
-                    <label><input type="checkbox" value="">Football</label>
-                  </div>
-                  <div class="checkbox">
-                    <label><input type="checkbox" value="">Basketball</label>
-                  </div>
-                  <div class="checkbox">
-                    <label><input type="checkbox" value="">Tennis</label>
-                  </div>
-                  <div class="checkbox">
-                    <label><input type="checkbox" value="">Badminton</label>
-                  </div>
-                <hr style="border-color : transparent">
-                <h4 style="color: #49274A;">Save Changes?</h4>
-                <button class="btn-save btn-success btn-sm">Save</button>
-                News
-                <ul>
-                    <% news.forEach( function(n) { %>
-                        <li>
-                            <%= n.name %>
-                        </li>
-                    <% }) %>
-                </ul>
-                
-            </form>
-        </div>
-    </div>
-</div>
+	<div class="wrapper">
+		<div class="main">
+			<div class="card">
+				<h2 style="color: #49274A;"><span class="glyphicon glyphicon-user"></span>  Profile</span></h2>
+				<form class="form-profile" action="" method="GET">
+					<h3 style="color: #49274A;">News</h3>
+					<div class="checkbox">
+						<label><input type="checkbox" value="economy">Business & Economy</label>
+					</div>
+					<div class="checkbox">
+						<label><input type="checkbox" value="">Health & Fitness</label>
+					</div>
+					<div class="checkbox">
+						<label><input type="checkbox" value="">World News</label>
+					</div>
+					<div class="checkbox">
+						<label><input type="checkbox" value="">India News</label>
+					</div>
+					<div class="checkbox">
+						<label><input type="checkbox" value="">Celebrity News</label>
+					</div>
+					<hr style="border-color : transparent">
+					<h3 style="color: #49274A;">Sports</h3>
+					<div class="checkbox">
+						<label><input type="checkbox" value="economy">Cricket</label>
+					</div>
+					<div class="checkbox">
+						<label><input type="checkbox" value="">Football</label>
+					</div>
+					<div class="checkbox">
+						<label><input type="checkbox" value="">Basketball</label>
+					</div>
+					<div class="checkbox">
+						<label><input type="checkbox" value="">Tennis</label>
+					</div>
+					<div class="checkbox">
+						<label><input type="checkbox" value="">Badminton</label>
+					</div>
+					<hr style="border-color : transparent">
+					<h4 style="color: #49274A;">Save Changes?</h4>
+					<button class="btn-save btn-success btn-sm">Save</button>
+					News
+					<ul>
+						<% news.forEach( function(n) { %>
+							<li>
+								<%= n.name %>
+							</li>
+						<% }) %>
+					</ul>
+					
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
