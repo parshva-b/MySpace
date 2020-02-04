@@ -124,19 +124,19 @@
 			<div class="card card-signin my-5">
 				<div class="card-body">
 					<h5 class="card-title text-center">Sign In</h5>
-					<form class="form-signin" action="/login" method="post">
+					<form class="form-signin" action="/login" method="POST">
 						<div class="form-label-group">
-							<input type="text" id="username" class="form-control" placeholder="Username"
+							<input type="text" id="username" name="username" class="form-control" placeholder="Username"
 								required autofocus>
 							<label for="username">Username</label>
 						</div>
 						<div class="form-label-group">
-							<input type="password" id="inputPassword" class="form-control" placeholder="Password"
-								required>
+							<input type="password" id="inputPassword" name="password" class="form-control" placeholder="Password"
+								>
 							<label for="inputPassword">Password</label>
 						</div>
 						<button class="btn btn-sm btn-success btn-block" type="submit">
-							Sign Up
+							Sign In
 						</button>
 						<hr>
 						<p>New To The Dashboard? </p><a href="/views/partials/register.ejs">Register</a>
@@ -147,3 +147,20 @@
 		<div class="col-sm-4"></div>
 	</div>
 </div>
+
+<script>
+	$('form').on('submit', (e) => {
+		e.preventDefault()
+		const username = $('#username').val().trim()
+		const password = $('#inputPassword').val().trim()
+
+		const data = {
+			username,
+			password
+		}
+
+		$.post('/login', data, () => {
+			console.log('Data on server')
+		})
+	})
+</script>

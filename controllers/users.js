@@ -1,5 +1,7 @@
+const bodyParser = require('body-parser')
 const config = require('../utils/config')
 const mySpaceRouter = require('express').Router()
+
 const User = require('../models/user')
 const News = require('../models/news') 
 const Parser = require('rss-parser')
@@ -7,14 +9,28 @@ const parser = new Parser()
 
 let token = config.token || {}  
 
-mySpaceRouter.get('/', ( req, res, next) => {
+const jsonParser = bodyParser.json()
+
+mySpaceRouter.get('/', async (req, res, next) => {
 	if(Object.entries(token).length === 0 && token.constructor === Object) {
-		res.json({
-			message: 'Login kara'
-		})
+		res.render('login')
 	}
 	else {
-		res.render('index')
+		// console.log(token)
+		let answer = []
+		const news = await News.find({})
+		answer = news.filter(n => !token.news.includes(n.link) )
+		// console.log(answer)
+		res.render('index', {news: answer})
+	}
+})
+
+mySpaceRouter.get('/register', (req, res, next) => {
+	if(Object.entries(token).length === 0 && token.constructor === Object) {
+		res.render('register')
+	}
+	else {
+		res.render('login')
 	}
 })
 
@@ -51,7 +67,7 @@ mySpaceRouter.get('/news',async (req, res, next) => {
 			})
 		}
 		console.log('result', result.length)
-		res.json(result)
+		res.render('news', { articles: result })
 		console.log('-----------------------------')
 	}
 })
@@ -89,8 +105,9 @@ mySpaceRouter.put('/user/news', (req, res, next) => {
 	}
 })
 
-mySpaceRouter.post('/login', (req, res, next) => {
+mySpaceRouter.post('/login', jsonParser, (req, res, next) => {
 	const body = req.body
+	console.log(body.username, body.password)
 	User.findOne({ username: body.username })
 		.then( user => {
 			// if login successful

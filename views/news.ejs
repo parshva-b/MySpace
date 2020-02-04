@@ -1,0 +1,32 @@
+<%- include ('partials/sidenav') %>
+
+<style>
+    .main {
+        margin-left: 20%;
+        /* Same as the width of the sidenav */
+        font-size: 15px;
+        /* Increased text to enable scrolling */
+        padding: 0px 10px;
+    }
+
+    .card{
+        margin-left: 20%;
+    }
+</style>
+
+<div class="wrapper">
+    <div class="main">
+        <table>
+            <tr>
+                <th>Title</th>
+                <th>URL</th>
+            </tr>
+            <% articles.forEach( function(a) { %>
+                <tr>
+                    <td> <%= a.title %> </td>
+                    <td> <%= a.link %> </td>
+                </tr>
+            <% }) %>
+        </table>
+    </div>
+</div>

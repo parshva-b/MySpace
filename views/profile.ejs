@@ -39,6 +39,7 @@
         <div class="card">
             <h2 style="color: #49274A;"><span class="glyphicon glyphicon-user"></span>  Profile</span></h2>
             <form class="form-profile" action="" method="GET">
+<<<<<<< HEAD
                 <h3 style="color: #49274A;">News</h3>
                 <div class="checkbox">
                     <label><input type="checkbox" value="economy">Business & Economy</label>
@@ -75,6 +76,21 @@
                 <hr style="border-color : transparent">
                 <h4 style="color: #49274A;">Save Changes?</h4>
                 <button class="btn-save btn-success btn-sm">Save</button>
+=======
+                News
+                <ul>
+                    <% news.forEach( function(n) { %>
+                        <li>
+                            <%= n.name %>
+                        </li>
+                    <% }) %>
+                </ul>
+                <hr>
+                Sports
+                <hr>
+                Save Changes?
+                <button class="btn-save btn-success">Save</button>
+>>>>>>> 99fcf707fb7cfc24bed8057d54211c2e038c11f1
             </form>
         </div>
     </div>
