@@ -1,4 +1,5 @@
 const bodyParser = require('body-parser')
+const axios = require('axios')
 const config = require('../utils/config')
 const mySpaceRouter = require('express').Router()
 
@@ -70,6 +71,20 @@ mySpaceRouter.get('/news',async (req, res, next) => {
 		res.render('news', { articles: result })
 		console.log('-----------------------------')
 	}
+})
+
+mySpaceRouter.get('/sports', async (req, res, next) => {
+	const result = await axios.get(`https://cricapi.com/api/matches?apikey=${config.API_KEY}`)
+	const matches = result.data.matches.map(m => {
+		return {
+			team1: m['team-1'],
+			team2: m['team-2'],
+			winner: m.winner_team
+		}
+	})
+	// res.json(matches)
+	// console.log(matches)
+	res.render('match', { matches: matches })
 })
 
 mySpaceRouter.get('/user', (req, res, next) => {

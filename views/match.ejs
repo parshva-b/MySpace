@@ -1,0 +1,28 @@
+<%- include ('partials/sidenav') %>
+
+<style>
+    .main {
+        margin-left: 20%;
+        /* Same as the width of the sidenav */
+        font-size: 15px;
+        /* Increased text to enable scrolling */
+        padding: 0px 10px;
+    }
+
+    .card{
+        margin-left: 20%;
+    }
+</style>
+
+<div class="wrapper">
+    <div class="main">
+        <% matches.forEach( function(m) { %>
+            <div class="card">
+                <div class="card-body">
+                    <strong> <%= m.team1 %> </strong> VS <strong> <%= m.team2 %> </strong>
+                    <h3> <%= m.winner %> </h3>
+                </div>
+            </div>
+        <% }) %>
+    </div>
+</div>
