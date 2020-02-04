@@ -54,52 +54,26 @@
 		<div class="main">
 			<div class="card">
 				<h2 style="color: #49274A;"><span class="glyphicon glyphicon-user"></span>  Profile</span></h2>
-				<form class="form-profile" action="" method="GET">
+				<form class="form-profile" action="/user/news" method="POST">
 					<h3 style="color: #49274A;">News</h3>
-					<div class="checkbox">
-						<label><input type="checkbox" value="economy">Business & Economy</label>
-					</div>
-					<div class="checkbox">
-						<label><input type="checkbox" value="">Health & Fitness</label>
-					</div>
-					<div class="checkbox">
-						<label><input type="checkbox" value="">World News</label>
-					</div>
-					<div class="checkbox">
-						<label><input type="checkbox" value="">India News</label>
-					</div>
-					<div class="checkbox">
-						<label><input type="checkbox" value="">Celebrity News</label>
-					</div>
+					<% news.forEach( function(n) { %>
+						<div class="checkbox">
+							<label>
+								<input type="checkbox" name="news" >
+								<%= n.name %>
+							</label>
+						</div>
+					<% }) %>
 					<hr style="border-color : transparent">
 					<h3 style="color: #49274A;">Sports</h3>
-					<div class="checkbox">
-						<label><input type="checkbox" value="economy">Cricket</label>
+					
+					<div>
+						<a href="/sports"> Check the working of API </a>
 					</div>
-					<div class="checkbox">
-						<label><input type="checkbox" value="">Football</label>
-					</div>
-					<div class="checkbox">
-						<label><input type="checkbox" value="">Basketball</label>
-					</div>
-					<div class="checkbox">
-						<label><input type="checkbox" value="">Tennis</label>
-					</div>
-					<div class="checkbox">
-						<label><input type="checkbox" value="">Badminton</label>
-					</div>
+
 					<hr style="border-color : transparent">
 					<h4 style="color: #49274A;">Save Changes?</h4>
 					<button class="btn-save btn-success btn-sm">Save</button>
-					News
-					<ul>
-						<% news.forEach( function(n) { %>
-							<li>
-								<%= n.name %>
-							</li>
-						<% }) %>
-					</ul>
-					
 				</form>
 			</div>
 		</div>
