@@ -6,24 +6,75 @@
         /* Same as the width of the sidenav */
         font-size: 15px;
         /* Increased text to enable scrolling */
-        padding: 0px 10px;
+        padding: 50px;
     }
 
     .card{
-        margin-left: 20%;
+        /* margin-left: 20%; */
+        border: 0;
+        border-radius: 1rem;
+        box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.5);
+        margin: auto;
+        padding: 30px;
+        width: 50%;
+        background-color: #F4DECB;
     }
+    .btn-save{
+        background-color: #49274A;
+        border:blueviolet;
+        border-radius: 1rem;
+        font-size: 20px;
+        
+    }
+    .checkbox{
+        size: 25px;
+        font-size: 16.5px;
+        color: #49274A;
+    }
+
 </style>
 
 <div class="wrapper">
     <div class="main">
         <div class="card">
+            <h2 style="color: #49274A;"><span class="glyphicon glyphicon-user"></span>  Profile</span></h2>
             <form class="form-profile" action="" method="GET">
-                News
-                <hr>
-                Sports
-                <hr>
-                Save Changes?
-                <button class="btn-save btn-success">Save</button>
+                <h3 style="color: #49274A;">News</h3>
+                <div class="checkbox">
+                    <label><input type="checkbox" value="economy">Business & Economy</label>
+                  </div>
+                  <div class="checkbox">
+                    <label><input type="checkbox" value="">Health & Fitness</label>
+                  </div>
+                  <div class="checkbox">
+                    <label><input type="checkbox" value="">World News</label>
+                  </div>
+                  <div class="checkbox">
+                    <label><input type="checkbox" value="">India News</label>
+                  </div>
+                  <div class="checkbox">
+                    <label><input type="checkbox" value="">Celebrity News</label>
+                  </div>
+                <hr style="border-color : transparent">
+                <h3 style="color: #49274A;">Sports</h3>
+                <div class="checkbox">
+                    <label><input type="checkbox" value="economy">Cricket</label>
+                  </div>
+                  <div class="checkbox">
+                    <label><input type="checkbox" value="">Football</label>
+                  </div>
+                  <div class="checkbox">
+                    <label><input type="checkbox" value="">Basketball</label>
+                  </div>
+                  <div class="checkbox">
+                    <label><input type="checkbox" value="">Tennis</label>
+                  </div>
+                  <div class="checkbox">
+                    <label><input type="checkbox" value="">Badminton</label>
+                  </div>
+                <hr style="border-color : transparent">
+                <h4 style="color: #49274A;">Save Changes?</h4>
+                <button class="btn-save btn-success btn-sm">Save</button>
             </form>
         </div>
     </div>
