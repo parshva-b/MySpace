@@ -15,7 +15,7 @@ const jsonParser = bodyParser.json()
 
 mySpaceRouter.get('/', (req, res, next) => {
 	if(Object.entries(token).length === 0 && token.constructor === Object) {
-		res.render('login')
+		res.redirect('/login')
 	}
 	else {
 		res.render('index')
@@ -24,6 +24,10 @@ mySpaceRouter.get('/', (req, res, next) => {
 
 mySpaceRouter.get('/register', (req, res, next) => {
 	res.render('register')
+})
+
+mySpaceRouter.get('/login', (req, res, next) => {
+	res.render('login')
 })
 
 mySpaceRouter.get('/all', async (req, res, next) => {
@@ -101,7 +105,7 @@ mySpaceRouter.get('/profile', async (req, res, next) => {
 	}
 })
 
-mySpaceRouter.put('/user/news', (req, res, next) => {
+mySpaceRouter.post('/user/news', (req, res, next) => {
 	if( Object.entries(token).length === 0 && token.constructor === Object ) {
 		res.status(401).json({
 			error: 'Bad request, User must be authenticated'
@@ -110,18 +114,20 @@ mySpaceRouter.put('/user/news', (req, res, next) => {
 	else {
 		const user = token
 		const body = req.body
-		if( !user.news.includes( body.news ) ) {
-			user.news = [ ...user.news, body.news]
-			User.findByIdAndUpdate( token._id, user, { new: true })
-			.then( updatedUser => {
-				res.json(updatedUser.toJSON())
-			})
-			.catch(error => next(error))
-		}
+		console.log(body)
+		// if( !user.news.includes( body.news ) ) {
+		// 	user.news = [ ...user.news, body.news]
+		// 	User.findByIdAndUpdate( token._id, user, { new: true })
+		// 	.then( updatedUser => {
+		// 		res.json(updatedUser.toJSON())
+		// 	})
+		// 	.catch(error => next(error))
+		// }
+		// // console.log(user)
+		// else {
+		// 	res.status(204)
+		// }
 		// console.log(user)
-		else {
-			res.status(204)
-		}
 	}
 })
 
