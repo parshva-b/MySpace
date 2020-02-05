@@ -1,51 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-	<meta charset="UTF-8">
-	<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <meta charset="UTF-8">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
     <script src='https://kit.fontawesome.com/a076d05399.js'></script>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<title>Document</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
 </head>
+
 <body>
-	<%- include ('partials/sidenav') %>
+    <%- include ('partials/sidenav') %>
 
-	<style>
-		.main {
-			margin-left: 20%;
-			/* Same as the width of the sidenav */
-			font-size: 15px;
-			/* Increased text to enable scrolling */
-			padding: 0px 10px;
-		}
+    <style>
+        .main {
+            margin-left: 20%;
+            /* Same as the width of the sidenav */
+            font-size: 15px;
+            /* Increased text to enable scrolling */
+            padding: 20px 10px;
+        }
 
-    .card{
-        margin-left: 20%;
-        box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.5);
-        width: 50%;
-        background-color: #F4DECB;
-    }
-    .card-body{
+        .card {
+            margin-left: 20%;
+            box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.5);
+            width: 50%;
+            background-color: #F4DECB;
+            border-radius: 0.5rem;
+        }
 
-    }
+        .card-body {
+            text-align: center;
+            color: rgb(105, 44, 107);
 
-</style>
+        }
+    </style>
 
-<div class="wrapper">
-    <div class="main">
-        <% matches.forEach( function(m) { %>
+    <div class="wrapper">
+        <div class="main">
+            <% matches.forEach( function(m) { %>
             <!-- <div class="container"> -->
             <div class="card">
                 <div class="card-body">
-                    <strong> <%= m.team1 %> </strong> VS <strong> <%= m.team2 %> </strong>
-                    <h3> <%= m.winner %> <hr style="border-color : transparent"></h3>
+                    <strong
+                        style="font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; font-size: 18px;">
+                        <%= m.team1 %> </strong> VS <strong
+                        style="font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; font-size: 18px;">
+                        <%= m.team2 %> </strong>
+                    <h3
+                        style="font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;">
+                        <%= m.winner %>
+                        <hr style="border-color : transparent">
+                    </h3>
                 </div>
-                </div>
+            </div>
+            <hr style="border: transparent;">
             <!-- </div> -->
-        <% }) %>
+            <% }) %>
+        </div>
     </div>
-</div>
+    <%- include ('partials/footer') %>

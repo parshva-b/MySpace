@@ -20,17 +20,19 @@
 			/* Same as the width of the sidenav */
 			font-size: 15px;
 			/* Increased text to enable scrolling */
-			padding: 0px 10px;
+			padding: 20px 10px;
 		}
 
 		.card {
 			margin-left: 20%;
+			width: 50%;
 		}
-
-		.table-news {
-			border: black;
-			border-width: thick;
-
+		th, td{
+			text-align: center;
+			color: #49274A;
+		}
+		th{
+			font-size: x-large;
 		}
 
 		.table-data {
@@ -38,33 +40,8 @@
 		}
 	</style>
 
-<<<<<<< HEAD
-<div class="main">
-    <table class="table-news">
-        <thead>
-            <tr>
-                <th>Title</th>
-                <th>See full article:</th>
-            </tr>
-        </thead>
-        <tbody>
-            <% articles.forEach( function(a) { %>
-            <tr>
-                <td class="table-data">
-                    <hr style="border-color : transparent"><%= a.title %> </td>
-                <td class="table-data">
-                    <hr style="border-color : transparent"><a href="<%= a.link %>"><%= a.link %></a> </td>
-            </tr>
-            <% }) %>
-        </tbody>
-    </table>
-</div>
-<div class="push"></div>
-
-<%- include ('partials/footer') %>
-=======
 	<div class="main">
-		<table class="table-news">
+		<table class="table table-bordered">
 			<thead>
 				<tr>
 					<th>Title</th>
@@ -83,7 +60,7 @@
 			</tbody>
 		</table>
 	</div>
-	<div class="push"></div>
+	<!-- <div class="push"></div> -->
+	<%- include ('partials/footer') %>	
 </body>
 </html>
->>>>>>> ba474bd07e4a7176909350cfb5248c063ef8b604

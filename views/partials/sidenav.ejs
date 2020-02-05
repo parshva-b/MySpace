@@ -1,6 +1,6 @@
 <style>
   body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif, sans-serif;
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     background-color: #F8EEE7;
     /* background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQGLeOCyBScCW0T8Uj8FAKZWJXnrSOjP3-fq6p-yDpJUXbkJw9A"); */
     background-position: center;
@@ -49,19 +49,30 @@
       font-size: 18px;
     }
   }
+  form{
+    padding-left: 75%;
+  }
+  button{
+    width: 65px;
+    height: 35px;
+    border-radius: 1.5rem;
+    background-color: #94618E;
+    color: #F8EEE7;
+    border: #94618E;
+  }
 
 </style>
 
 <div class="sidenav">
-  <h3 style="color: #49274A; padding-bottom: 9px;">MySpace</h3>
+  <p> <h3 style="color: #49274A;">MySpace  </h3> <form action="/logout" method="POST" >
+    <button> Logout </button>
+  </form>
+</p>
   <ul class="nav nav-pills nav-stacked">
     <li class="active"><a href="/" style="background-color: #94618E;"><span class="glyphicon glyphicon-home"></span>
         Home</a></li>
     <li><a href="/news"><span class="glyphicon glyphicon-globe"></span> News</a></li>
     <li><a href="/sports" id="news"><i class='fas fa-futbol'></i> Sports</a></li>
     <li><a href="/profile"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
-    <form action="/logout" method="POST" >
-      <button> Logout </button>
-    </form>
   </ul><br>
 </div>
